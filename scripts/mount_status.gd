@@ -3,11 +3,15 @@ class_name MountStatus
 
 const MOUNT_UI = preload("res://scenes/mount_ui.tscn")
 
+const BITE_COOLDOWN = 0.2
+var can_bite = true
+
 var mount_ui : MountUI
 
 var flea : Flea
 var cat : Cat
-var mount_text
+
+var flea_original_position: Vector2
 
 var rage = 0
 var max_health = 10
@@ -25,15 +29,34 @@ var pattern = [
 var pattern_index = 0
 var in_state = false
 
+var setup = false
+
 func _ready():
+	var tween = get_tree().create_tween()
+	flea_original_position = flea.global_position
+	tween.set_ease(Tween.EASE_OUT_IN)
+	tween.tween_method(migrate_flea, flea.global_position, cat.mount_anchor.global_position, 1.0)
+
+	await tween.finished
+
+	flea.mount(cat, cat.mount_anchor)
+
 	mount_ui = MOUNT_UI.instantiate()
+	mount_ui.status = self
 	add_child(mount_ui)
+	
+	setup = true
+
+func migrate_flea(pos: Vector2):
+	flea.global_position = pos
 
 func _process(delta):
+	if not setup:
+		return
+
 	_handle_state()
 	_handle_input(delta)
 	_update_conditions()
-	mount_ui.update(self)
 
 func health_percent():
 	return (float(health) / float(max_health)) * 100.0
@@ -66,8 +89,11 @@ func transition_state(state):
 
 func _handle_input(delta):
 	if status == MOUNT_IDLE or status == MOUNT_WARNING:
-		if Input.is_action_just_pressed("bite"):
+		if Input.is_action_just_pressed("bite") and can_bite:
+			can_bite = false
 			health -= 1
+			await get_tree().create_timer(BITE_COOLDOWN).timeout
+			can_bite = true
 	elif status == MOUNT_ANGRY:
 		if Input.is_action_just_pressed("bite"):
 			rage += 10

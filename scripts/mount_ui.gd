@@ -1,6 +1,8 @@
 extends Control
 class_name MountUI
 
+var status: MountStatus
+
 @onready var wrapper = $Wrapper
 
 @onready var progress_bar = $Wrapper/ProgressBar
@@ -9,7 +11,7 @@ class_name MountUI
 
 @onready var cat_original_position = cat.global_position
 
-func update(status: MountStatus):
+func _process(delta):
 	if status.status == MountStatus.MOUNT_ANGRY:
 		player.current_animation = 'angry'
 	elif status.status == MountStatus.MOUNT_WARNING:
@@ -20,7 +22,3 @@ func update(status: MountStatus):
 	progress_bar.value = 100 - status.health_percent()
 
 	cat.global_position.x = cat_original_position.x + (status.rage / 100.0) * wrapper.size.x
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

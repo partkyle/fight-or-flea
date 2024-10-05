@@ -144,8 +144,6 @@ offset_bottom = 2.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_g777j")
-value = 18.0
-rounded = true
 show_percentage = false
 
 [node name="Cat" type="TextureRect" parent="Wrapper"]
