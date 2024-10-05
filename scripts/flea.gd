@@ -51,7 +51,7 @@ func _handle_mobile_movement(delta):
 	move_and_slide()
 
 func _handle_mount_movement(delta):
-	pass
+	flea.flip_h = false
 
 func _physics_process(delta):
 	if state == 'mobile':
@@ -61,5 +61,5 @@ func _physics_process(delta):
 
 func toss_off():
 	state = 'mobile'
-	velocity.y = JUMP_VELOCITY * 1.0
+	velocity.y = JUMP_VELOCITY
 	jump_count = 1

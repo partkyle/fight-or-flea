@@ -43,6 +43,7 @@ func _update_conditions():
 		print("you lose")
 		flea.toss_off()
 		queue_free()
+
 	if health <= 0:
 		print("you win")
 		flea.toss_off()

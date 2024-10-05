@@ -3,6 +3,7 @@ class_name Cat
 
 @onready var mount_manager = $"../MountManager"
 @onready var mount_anchor = $MountAnchor
+@onready var mount_area = $MountArea
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
