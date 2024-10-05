@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://bak2tw380pdpc"]
+
+[ext_resource type="Shader" uid="uid://lshcat65xfl2" path="res://shaders/grass.tres" id="1_lym37"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_330b0"]
+size = Vector2(640, 120)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c48b7"]
+shader = ExtResource("1_lym37")
+shader_parameter/ColorParameter = Color(0.167903, 0.638554, 0.15881, 1)
+
+[sub_resource type="Gradient" id="Gradient_wxkde"]
+offsets = PackedFloat32Array(0, 0.10241, 0.596386, 0.777108, 0.843373, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.259036, 0.259036, 0.259036, 1, 0.44124, 0.44124, 0.44124, 1, 0.7024, 0.7024, 0.7024, 1, 0.763134, 0.763134, 0.763134, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_iat5e"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_r5syw"]
+width = 640
+height = 120
+color_ramp = SubResource("Gradient_wxkde")
+noise = SubResource("FastNoiseLite_iat5e")
+
+[node name="Floor" type="StaticBody2D"]
+position = Vector2(320, 420)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_330b0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_c48b7")
+texture = SubResource("NoiseTexture2D_r5syw")

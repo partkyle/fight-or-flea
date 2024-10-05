@@ -19,6 +19,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 func take_mount_damage(body, damage):
 	animation_player.current_animation = 'hit'
 	get_tree().create_timer(0.2).timeout.connect(func(): animation_player.current_animation = 'RESET')
+
 	mount_damage += damage
 	if mount_damage >= mount_threshold:
 		mount_damage = 0

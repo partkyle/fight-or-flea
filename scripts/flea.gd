@@ -21,7 +21,8 @@ var max_jump_count = 2
 enum {STATE_MOBILE, STATE_MOUNTING, STATE_MOUNTED, STATE_THROWN}
 var state = STATE_MOBILE
 
-var last_input_dir : float
+# needs to start as one to prevent the flip if we start moving left first
+var last_input_dir : float = 1
 
 func mount(cat: Cat, anchor: Node2D):
 	transition_state(STATE_MOUNTED)

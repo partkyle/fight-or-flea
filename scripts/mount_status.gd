@@ -63,7 +63,6 @@ func health_percent():
 
 func _update_conditions():
 	if rage > (100 - health_percent()):
-		print("you lose")
 		flea.toss_off()
 		queue_free()
 
