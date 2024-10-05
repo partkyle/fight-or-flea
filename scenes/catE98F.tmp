@@ -1,0 +1,176 @@
+[gd_scene load_steps=13 format=3 uid="uid://cddjiyvoay65t"]
+
+[ext_resource type="Script" path="res://scripts/cat.gd" id="1_j578x"]
+
+[sub_resource type="VisualShaderNodeBooleanParameter" id="VisualShaderNodeBooleanParameter_dsyhc"]
+parameter_name = "Angry"
+default_value_enabled = true
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_hpdeq"]
+parameter_name = "AngryTint"
+default_value_enabled = true
+default_value = Color(1, 0, 0, 1)
+
+[sub_resource type="VisualShaderNodeIf" id="VisualShaderNodeIf_y5jiv"]
+default_input_values = [0, 0.0, 1, 1.0, 2, 1e-05, 3, Vector3(0, 0, 0), 4, Vector3(0, 0, 0), 5, Vector3(0, 0, 0)]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_7ynfw"]
+input_name = "texture"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_55c8v"]
+source = 5
+
+[sub_resource type="VisualShader" id="VisualShader_jiqkb"]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform bool Angry = false;
+uniform vec4 AngryTint : source_color = vec4(1.000000, 0.000000, 0.000000, 1.000000);
+
+
+
+void fragment() {
+// BooleanParameter:2
+	bool n_out2p0 = Angry;
+
+
+// ColorParameter:3
+	vec4 n_out3p0 = AngryTint;
+
+
+	vec4 n_out6p0;
+// Texture2D:6
+	n_out6p0 = texture(TEXTURE, UV);
+
+
+	vec3 n_out4p0;
+// If:4
+	float n_in4p1 = 1.00000;
+	float n_in4p2 = 0.00001;
+	if(abs((n_out2p0 ? 1.0 : 0.0) - n_in4p1) < n_in4p2)
+	{
+		n_out4p0 = vec3(n_out3p0.xyz);
+	}
+	else if((n_out2p0 ? 1.0 : 0.0) < n_in4p1)
+	{
+		n_out4p0 = vec3(n_out6p0.xyz);
+	}
+	else
+	{
+		n_out4p0 = vec3(n_out6p0.xyz);
+	}
+
+
+// Output:0
+	COLOR.rgb = n_out4p0;
+
+
+}
+"
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(640, 80)
+nodes/fragment/2/node = SubResource("VisualShaderNodeBooleanParameter_dsyhc")
+nodes/fragment/2/position = Vector2(-540, 60)
+nodes/fragment/3/node = SubResource("VisualShaderNodeColorParameter_hpdeq")
+nodes/fragment/3/position = Vector2(-660, 320)
+nodes/fragment/4/node = SubResource("VisualShaderNodeIf_y5jiv")
+nodes/fragment/4/position = Vector2(380, 40)
+nodes/fragment/5/node = SubResource("VisualShaderNodeInput_7ynfw")
+nodes/fragment/5/position = Vector2(-180, 600)
+nodes/fragment/6/node = SubResource("VisualShaderNodeTexture_55c8v")
+nodes/fragment/6/position = Vector2(-40, 380)
+nodes/fragment/connections = PackedInt32Array(3, 0, 4, 3, 2, 0, 4, 0, 4, 0, 0, 0, 5, 0, 6, 2, 6, 0, 4, 4, 6, 0, 4, 5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_at75f"]
+shader = SubResource("VisualShader_jiqkb")
+shader_parameter/Angry = false
+shader_parameter/AngryTint = Color(1, 0, 0, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ks187"]
+load_path = "res://.godot/imported/cat.png-3007fbfff595b5458dcd16d08e0c47d2.ctex"
+
+[sub_resource type="Animation" id="Animation_twite"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cat:material:shader_parameter/Angry")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cat:material:shader_parameter/AngryTint")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5oeis"]
+resource_name = "hit"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cat:material:shader_parameter/Angry")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cat:material:shader_parameter/AngryTint")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gcg7k"]
+_data = {
+"RESET": SubResource("Animation_twite"),
+"hit": SubResource("Animation_5oeis")
+}
+
+[node name="Cat" type="CharacterBody2D"]
+position = Vector2(300, 300.19)
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_j578x")
+
+[node name="Cat" type="Sprite2D" parent="."]
+texture_filter = 2
+material = SubResource("ShaderMaterial_at75f")
+scale = Vector2(3, 3)
+texture = SubResource("CompressedTexture2D_ks187")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-74, -27.19, -85, -18.19, -98, -29.19, -95, -49.19, -61, -58.19, -43, -42.19, -39, -13.19, -42, 5.81, -4, -8.19, 38, 2.81, 38, -14.19, 55, -11.19, 66, -14.19, 80, 11.81, 79, 29.81, 48, 36.81, 35, 69.81, 15, 70.81, 19, 48.81, -18, 44.81, -18, 67.81, -42, 72.81, -48, 52.81, -55, 33.81, -66, 17.81, -64, -19.19, -72, -37.19)
+
+[node name="MountAnchor" type="Node2D" parent="."]
+position = Vector2(25, -12)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gcg7k")
+}

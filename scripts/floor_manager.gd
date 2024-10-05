@@ -13,7 +13,6 @@ func _process(delta):
 	var distances = {}
 	for floor in floors:
 		var distance = target.global_position.x - floor.global_position.x
-		print(floor, ' ', distance)
 
 		distances[distance] = floor
 

@@ -4,14 +4,70 @@
 [ext_resource type="Animation" uid="uid://pvleq2rugapl" path="res://shaders/anger_animations/RESET.res" id="2_8ifvh"]
 [ext_resource type="Shader" uid="uid://b1r7n5a7y0fdh" path="res://shaders/anger.tres" id="2_ssutt"]
 [ext_resource type="Texture2D" uid="uid://cgwhutwrynti3" path="res://asserts/gobble.png" id="3_gvgdc"]
-[ext_resource type="Animation" uid="uid://bqryydfklvg0i" path="res://shaders/anger_animations/angry.res" id="3_yu07y"]
-[ext_resource type="Animation" uid="uid://ce4lgq0squje" path="res://shaders/anger_animations/warning.res" id="4_77vxs"]
+
+[sub_resource type="Animation" id="Animation_hbair"]
+resource_name = "angry"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/Angry")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/AngryTint")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6bc3r"]
+resource_name = "warning"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/Angry")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/AngryTint")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.636446, 0.52109, 0.190534, 1), Color(0.74902, 0.0941176, 0.454902, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e5jra"]
 _data = {
 "RESET": ExtResource("2_8ifvh"),
-"angry": ExtResource("3_yu07y"),
-"warning": ExtResource("4_77vxs")
+"angry": SubResource("Animation_hbair"),
+"warning": SubResource("Animation_6bc3r")
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g777j"]

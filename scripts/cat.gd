@@ -3,9 +3,10 @@ class_name Cat
 
 @onready var animation_player = $AnimationPlayer
 
-@onready var mount_manager = $"../MountManager"
 @onready var mount_anchor = $MountAnchor
 @onready var mount_area = $MountArea
+
+var mount_manager : MountManager
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
