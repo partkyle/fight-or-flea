@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Cat
 
+@onready var animation_player = $AnimationPlayer
+
 @onready var mount_manager = $"../MountManager"
 @onready var mount_anchor = $MountAnchor
 @onready var mount_area = $MountArea
@@ -15,6 +17,8 @@ var mount_threshold = 3
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func take_mount_damage(body, damage):
+	animation_player.current_animation = 'hit'
+	get_tree().create_timer(0.2).timeout.connect(func(): animation_player.current_animation = 'RESET')
 	mount_damage += damage
 	if mount_damage >= mount_threshold:
 		mount_damage = 0
