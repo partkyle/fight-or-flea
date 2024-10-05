@@ -26,10 +26,6 @@ func _process(delta):
 	for distance in distances:
 		var floor = distances[distance]
 		if abs(distance) > FLOOR_WIDTH * 1.5:
-			floor.global_position.x = min_floor.global_position.x +  FLOOR_WIDTH * sign_of(distance)
+			floor.global_position.x = min_floor.global_position.x +  FLOOR_WIDTH * Util.sign_of(distance)
 
-func sign_of(f: float):
-	if f < 0:
-		return -1
-	else:
-		return 1
+
