@@ -6,6 +6,10 @@ const ATTACK = preload("res://scenes/attack.tscn")
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
+const DODGE_MULTIPLIER = 10.0
+const DODGE_COOLDOWN = 0.2
+var can_dodge = true
+
 @onready var flea : Sprite2D = $Flea
 @onready var attack_container = $AttackContainer
 
@@ -59,6 +63,8 @@ func _handle_movement(delta):
 	elif state == STATE_MOBILE:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
+	_handle_dodge()
+
 	move_and_slide()
 
 func flip_horizontal():
@@ -66,6 +72,13 @@ func flip_horizontal():
 
 func _handle_mount_movement(delta):
 	pass
+
+func _handle_dodge():
+	if Input.is_action_just_pressed('dodge') and can_dodge:
+		can_dodge = false
+		velocity.x *= DODGE_MULTIPLIER
+
+		get_tree().create_timer(DODGE_COOLDOWN).timeout.connect(func(): can_dodge = true)
 
 func _physics_process(delta):
 	if state == STATE_MOBILE:

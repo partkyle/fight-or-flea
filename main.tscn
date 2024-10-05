@@ -8,7 +8,7 @@
 [ext_resource type="Shader" uid="uid://lshcat65xfl2" path="res://shaders/grass.tres" id="5_jtrde"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_330b0"]
-size = Vector2(1000, 95)
+size = Vector2(3843, 95)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c48b7"]
 shader = ExtResource("5_jtrde")
@@ -63,7 +63,7 @@ position = Vector2(25, -12)
 position = Vector2(320, 400)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-position = Vector2(0, 37.5)
+position = Vector2(303.5, 37.5)
 shape = SubResource("RectangleShape2D_330b0")
 
 [node name="Sprite2D" type="Sprite2D" parent="Floor"]
