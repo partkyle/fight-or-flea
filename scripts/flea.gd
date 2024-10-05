@@ -46,7 +46,6 @@ func _handle_mobile_movement(delta):
 		velocity.x = direction * SPEED
 		last_input_dir = velocity
 	else:
-		print(velocity.x)
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
@@ -61,7 +60,6 @@ func _physics_process(delta):
 		_handle_mount_movement(delta)
 
 func toss_off():
-	print('aww,yeah')
 	state = 'mobile'
 	velocity.y = JUMP_VELOCITY * 1.0
 	jump_count = 1

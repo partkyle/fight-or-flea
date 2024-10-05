@@ -39,7 +39,6 @@ func health_percent():
 	return (float(health) / float(max_health)) * 100.0
 
 func _update_conditions():
-	print(rage, ' ', health_percent())
 	if rage > (100 - health_percent()):
 		print("you lose")
 		flea.toss_off()
