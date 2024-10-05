@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cti2trksjfxix"]
+
+[ext_resource type="Script" path="res://scripts/mount_status.gd" id="1_tw6yh"]
+
+[node name="MountStatus" type="Node2D"]
+script = ExtResource("1_tw6yh")

@@ -1,0 +1,163 @@
+[gd_scene load_steps=10 format=3 uid="uid://drwaoqg6ml1nu"]
+
+[ext_resource type="Script" path="res://scripts/mount_ui.gd" id="1_rxgwh"]
+[ext_resource type="Shader" uid="uid://b1r7n5a7y0fdh" path="res://shaders/anger.tres" id="2_ssutt"]
+[ext_resource type="Texture2D" uid="uid://cgwhutwrynti3" path="res://asserts/gobble.png" id="3_gvgdc"]
+
+[sub_resource type="Animation" id="Animation_ciqtp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/Angry")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/AngryTint")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hbair"]
+resource_name = "angry"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/Angry")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/AngryTint")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6bc3r"]
+resource_name = "warning"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/Angry")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/AngryTint")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.636446, 0.52109, 0.190534, 1), Color(0.74902, 0.0941176, 0.454902, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e5jra"]
+_data = {
+"RESET": SubResource("Animation_ciqtp"),
+"angry": SubResource("Animation_hbair"),
+"warning": SubResource("Animation_6bc3r")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g777j"]
+bg_color = Color(0, 1, 0.983333, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_66wub"]
+shader = ExtResource("2_ssutt")
+shader_parameter/Angry = false
+shader_parameter/AngryTint = Color(1, 0, 0, 1)
+
+[node name="MountUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rxgwh")
+
+[node name="Wrapper" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.08
+anchor_top = 0.033
+anchor_right = 0.917
+anchor_bottom = 0.09
+offset_left = -0.200005
+offset_top = 0.16
+offset_right = 0.119995
+offset_bottom = -0.200001
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(976, -14)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Wrapper"]
+root_node = NodePath("../Cat")
+libraries = {
+"": SubResource("AnimationLibrary_e5jra")
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="Wrapper"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -5.5
+offset_bottom = 2.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_g777j")
+value = 18.0
+rounded = true
+show_percentage = false
+
+[node name="Cat" type="TextureRect" parent="Wrapper"]
+material = SubResource("ShaderMaterial_66wub")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.006
+anchor_top = 0.302
+anchor_right = 0.017
+anchor_bottom = 0.593
+offset_left = -26.784
+offset_top = -30.154
+offset_right = 24.888
+offset_bottom = 25.989
+texture = ExtResource("3_gvgdc")
