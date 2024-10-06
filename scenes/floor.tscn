@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bak2tw380pdpc"]
+[gd_scene load_steps=8 format=3 uid="uid://bak2tw380pdpc"]
 
+[ext_resource type="Texture2D" uid="uid://bct7co5mgfbvb" path="res://asserts/background.png" id="1_aua6c"]
 [ext_resource type="Shader" uid="uid://lshcat65xfl2" path="res://shaders/grass.tres" id="1_lym37"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_330b0"]
@@ -26,6 +27,11 @@ position = Vector2(320, 420)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_330b0")
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -1000
+position = Vector2(0, -240)
+texture = ExtResource("1_aua6c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_c48b7")
