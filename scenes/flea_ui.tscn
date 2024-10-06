@@ -70,7 +70,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 8
 theme = ExtResource("2_8ibwx")
-text = "1234"
+text = "0"
 
 [node name="Control" type="Control" parent="Control/Score/VBoxContainer"]
 layout_mode = 2
@@ -91,4 +91,4 @@ size_flags_horizontal = 3
 [node name="Value" type="Label" parent="Control/Score/VBoxContainer/Failed"]
 layout_mode = 2
 theme = ExtResource("2_8ibwx")
-text = "1234"
+text = "0"

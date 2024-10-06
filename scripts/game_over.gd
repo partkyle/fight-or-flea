@@ -16,6 +16,10 @@ var game: Node2D
 func _ready():
 	new_game()
 
+func _process(delta):
+	if Input.is_action_just_pressed("restart"):
+		new_game()
+
 func new_game():
 	if game:
 		game.queue_free()
