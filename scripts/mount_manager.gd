@@ -11,6 +11,7 @@ func begin_mount(flea: Flea, cat: Cat):
 	status.flea = flea
 	status.cat = cat
 	flea.transition_state(Flea.STATE_MOUNTING)
+	cat.transition_state(Cat.STATE_MOUNTED)
 
 	add_child(status)
 	

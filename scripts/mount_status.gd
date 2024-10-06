@@ -64,6 +64,7 @@ func health_percent():
 func _update_conditions():
 	if rage > (100 - health_percent()):
 		flea.toss_off()
+		cat.transition_state(Cat.STATE_MOBILE)
 		queue_free()
 
 	if health <= 0:
@@ -87,7 +88,7 @@ func transition_state(state):
 
 func _handle_input(delta):
 	if status == MOUNT_IDLE or status == MOUNT_WARNING:
-		if Input.is_action_just_pressed("bite") and can_bite:
+		if Input.is_action_just_pressed("bite") and can_bite and !Input.is_action_pressed("hold"):
 			can_bite = false
 			health -= 1
 			await get_tree().create_timer(BITE_COOLDOWN).timeout
@@ -98,4 +99,4 @@ func _handle_input(delta):
 		if Input.is_action_pressed("hold"):
 			rage += 0.5 * delta
 		else:
-			rage += 10 * delta
+			rage += 20 * delta

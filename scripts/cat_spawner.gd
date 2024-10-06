@@ -17,7 +17,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var cat_index = floori(player.global_position.x) / EVERY
-	print(cat_index, ' ', spawned)
 	if cat_index not in spawned:
 		spawned.push_back(cat_index)
 		var cat = CAT.instantiate()
