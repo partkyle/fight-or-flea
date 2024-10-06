@@ -4,7 +4,6 @@ class_name Cat
 @onready var animation_player = $AnimationPlayer
 
 @onready var mount_anchor = $MountAnchor
-@onready var mount_area = $MountArea
 
 var target: Flea
 
@@ -55,8 +54,10 @@ func _physics_process(delta):
 
 func _on_los_view_body_entered(body):
 	if body is Flea:
+		print('gotem')
 		target = body
 
 func _on_los_view_body_exited(body):
 	if body is Flea:
+		print('notem')
 		target = null

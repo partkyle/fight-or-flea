@@ -1,13 +1,17 @@
 extends Node2D
 class_name MountManager
 
-var status : MountStatus = null
+@onready var score = $"../Score"
+
+var status: MountStatus
 
 func begin_mount(flea: Flea, cat: Cat):
-	if status:
+	if get_children().size() != 0:
 		push_error('status is not nil and we tried to create status. this is a 1 mount at a time game')
+		return
 
 	status = MountStatus.new()
+	status.score = score
 	status.flea = flea
 	status.cat = cat
 	flea.transition_state(Flea.STATE_MOUNTING)

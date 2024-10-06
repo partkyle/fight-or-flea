@@ -6,6 +6,8 @@ const MOUNT_UI = preload("res://scenes/mount_ui.tscn")
 const BITE_COOLDOWN = 0.2
 var can_bite = true
 
+var score: Score
+
 var mount_ui : MountUI
 
 var flea : Flea
@@ -66,11 +68,14 @@ func _update_conditions():
 		flea.toss_off()
 		cat.transition_state(Cat.STATE_MOBILE)
 		queue_free()
+		flea.health -= 1
+		score.failed += 1
 
 	if health <= 0:
 		flea.toss_off()
 		queue_free()
 		cat.queue_free()
+		score.eaten += 1
 
 func _handle_state():
 	if in_state:

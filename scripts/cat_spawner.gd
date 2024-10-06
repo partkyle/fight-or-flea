@@ -2,7 +2,7 @@ extends Node
 
 const CAT = preload("res://scenes/cat.tscn")
 @onready var mount_manager = $"../MountManager"
-
+@onready var score = $"../Score"
 @onready var player = $"../Flea"
 
 const EVERY = 500

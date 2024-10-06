@@ -7,10 +7,13 @@ const DODGE_MULTIPLIER = 10.0
 const DODGE_COOLDOWN = 0.2
 var can_dodge = true
 
+var max_health = 1
+var health = max_health
+
 @onready var flea : Sprite2D = $Flea
 @onready var attack_container = $AttackContainer
 
-enum {STATE_MOBILE, STATE_MOUNTING, STATE_MOUNTED, STATE_THROWN}
+enum {STATE_MOBILE, STATE_MOUNTING, STATE_MOUNTED, STATE_THROWN, STATE_DEAD}
 var state = STATE_MOBILE
 
 var anchor: Node2D
@@ -25,9 +28,13 @@ func mount(cat: Cat, a: Node2D):
 	anchor = a
 
 func transition_state(s):
-	# clean up the mounted state so we don't see a bug related to a missing node
+	# clean up the if the PREVIOUS state is mounted
+	# so we don't see a bug related to a missing node
 	if state == STATE_MOUNTED:
 		anchor = null
+
+	if s == STATE_DEAD:
+		set_collision_layer_value(2, false)
 
 	state = s
 
@@ -63,6 +70,11 @@ func _handle_dodge():
 		await get_tree().create_timer(DODGE_COOLDOWN).timeout
 		can_dodge = true
 
+func _process(delta):
+	if health <= 0:
+		transition_state(STATE_DEAD)
+		print ('need to trigger a gameover')
+
 func _physics_process(delta):
 	if state == STATE_MOBILE:
 		_handle_mobile_movement(delta)
@@ -77,9 +89,9 @@ func toss_off():
 	velocity.x = JUMP_VELOCITY * randf_range(-1.5, 1.5)
 	jump_count = 1
 	transition_state(STATE_THROWN)
-	
+
 	await get_tree().create_timer(1.0).timeout
-	
+
 	enable_cat_collision()
 	state = STATE_MOBILE
 

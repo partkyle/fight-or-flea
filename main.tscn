@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://b4by48scsegxa"]
+[gd_scene load_steps=10 format=3 uid="uid://b4by48scsegxa"]
 
 [ext_resource type="Script" path="res://scripts/flea.gd" id="1_41r4s"]
 [ext_resource type="Texture2D" uid="uid://bqq7v3yi7nbon" path="res://asserts/flea.png" id="2_df7or"]
 [ext_resource type="Script" path="res://scripts/mount_manager.gd" id="5_eit62"]
 [ext_resource type="Script" path="res://scripts/cat_spawner.gd" id="7_fvvbw"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="8_8dbba"]
+[ext_resource type="PackedScene" uid="uid://8uaadyaats0v" path="res://scenes/flea_ui.tscn" id="8_hp1d2"]
 [ext_resource type="Script" path="res://scripts/floor_manager.gd" id="8_x2riw"]
+[ext_resource type="Script" path="res://scripts/score.gd" id="9_h1te4"]
 [ext_resource type="PackedScene" uid="uid://bak2tw380pdpc" path="res://scenes/floor.tscn" id="9_y1ysk"]
 
 [node name="Main" type="Node2D"]
@@ -46,3 +48,10 @@ position = Vector2(960, 420)
 
 [node name="CatSpawner" type="Node2D" parent="."]
 script = ExtResource("7_fvvbw")
+
+[node name="FleaUI" parent="." node_paths=PackedStringArray("flea", "score") instance=ExtResource("8_hp1d2")]
+flea = NodePath("../Flea")
+score = NodePath("../Score")
+
+[node name="Score" type="Node2D" parent="."]
+script = ExtResource("9_h1te4")
