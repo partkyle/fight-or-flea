@@ -19,27 +19,21 @@ The inputs should show in the top right as you are playing and are updated based
 #### Reference
 
 | Action      | Key / Button        | Joypad Control      |
-|-------------|---------------------|---------------------|
+|:-----------:|:-------------------:|:-------------------:|
 | Move Left   | A                   | D-Pad Left          |
 |             |                     | Left Thumbstick     |
-|-------------|---------------------|---------------------|
 | Move Right  | D                   | D-Pad Right         |
 |             |                     | Left Thumbstick     |
-|-------------|---------------------|---------------------|
 | Jump        | Space               | X (PS)              |
 |             |                     | A (XBOX)            |
 |             |                     | B (Nintendo)        |
-|-------------|---------------------|---------------------|
 | Bite        | F                   | □ (PS)              |
 |             | Left Mouse Click    | X (XBOX)            |
 |             |                     | Y (Nintendo)        |
-|-------------|---------------------|---------------------|
-| Hold        |                     | Right Trigger       |
+| Hold        | Shift               | Right Trigger       |
 |             | Right Mouse Click   |                     |
-|-------------|---------------------|---------------------|
 | Dodge       | Shift               | O (PS)              |
 |             |                     | B (XBOX)            |
 |             |                     | A (Nintendo)        |
-|-------------|---------------------|---------------------|
 | Restart     | F2                  | Select              |
 |             |                     |                     |
