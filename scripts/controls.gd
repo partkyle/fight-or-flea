@@ -30,7 +30,7 @@ func _input(event):
 		ever_mouse = true
 	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
 		input_method = INPUT_CONTROLLER
-	elif not ever_mouse:
+	elif not ever_mouse or input_method == INPUT_CONTROLLER:
 		input_method = INPUT_KEY
 
 	_update_input_method()

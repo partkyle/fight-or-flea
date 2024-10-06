@@ -26,8 +26,6 @@ func new_game():
 	game = GAME.instantiate()
 	game.game_over.connect(game_over)
 
-	print('connecting to gme over sig ', game)
-
 	level.add_child(game)
 
 	back_drop.hide()
