@@ -3,5 +3,5 @@
 [ext_resource type="FontFile" uid="uid://b74dspbqvuunp" path="res://asserts/fonts/PressStart2P-Regular.ttf" id="1_o2t4n"]
 
 [resource]
-Label/font_sizes/font_size = 11
+Label/font_sizes/font_size = 16
 Label/fonts/font = ExtResource("1_o2t4n")

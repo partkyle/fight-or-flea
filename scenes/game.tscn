@@ -1,0 +1,231 @@
+[gd_scene load_steps=19 format=3 uid="uid://b4by48scsegxa"]
+
+[ext_resource type="Script" path="res://scripts/flea.gd" id="1_sf46h"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_vmcok"]
+[ext_resource type="Texture2D" uid="uid://bqq7v3yi7nbon" path="res://asserts/flea.png" id="2_nkt1x"]
+[ext_resource type="Script" path="res://scripts/mount_manager.gd" id="3_3fsmr"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="4_b1141"]
+[ext_resource type="Script" path="res://scripts/floor_manager.gd" id="5_gwxfe"]
+[ext_resource type="PackedScene" uid="uid://bak2tw380pdpc" path="res://scenes/floor.tscn" id="6_flaj7"]
+[ext_resource type="Script" path="res://scripts/cat_spawner.gd" id="7_47cvi"]
+[ext_resource type="PackedScene" uid="uid://8uaadyaats0v" path="res://scenes/flea_ui.tscn" id="8_m3pw5"]
+[ext_resource type="Script" path="res://scripts/score.gd" id="9_ikuvy"]
+[ext_resource type="Texture2D" uid="uid://doab18hsspak1" path="res://asserts/keys.png" id="11_7ecsg"]
+[ext_resource type="Script" path="res://scripts/controls.gd" id="11_m6c4j"]
+[ext_resource type="Theme" uid="uid://w00o54vch7ik" path="res://ui/ui_theme.tres" id="12_exs3w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6fma"]
+atlas = ExtResource("11_7ecsg")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcenu"]
+atlas = ExtResource("11_7ecsg")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjicc"]
+atlas = ExtResource("11_7ecsg")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81gie"]
+atlas = ExtResource("11_7ecsg")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4oil"]
+atlas = ExtResource("11_7ecsg")
+region = Rect2(32, 0, 16, 16)
+
+[node name="game" type="Node2D"]
+script = ExtResource("1_vmcok")
+
+[node name="Flea" type="CharacterBody2D" parent="."]
+z_index = 1
+texture_filter = 1
+position = Vector2(20, 8.525)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_sf46h")
+
+[node name="Flea" type="Sprite2D" parent="Flea"]
+texture = ExtResource("2_nkt1x")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Flea"]
+polygon = PackedVector2Array(-1, 6.475, -11, 6.475, -15, 2.475, -15, -6.525, -11, -10.525, 1, -10.525, 3, -8.525, 8, -8.525, 12, -3.525, 12, 0.475, 9, 3.475, 1, 3.475)
+
+[node name="AttackContainer" type="Node2D" parent="Flea"]
+position = Vector2(20, -6.525)
+
+[node name="MountManager" type="Node2D" parent="."]
+script = ExtResource("3_3fsmr")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 240)
+script = ExtResource("4_b1141")
+
+[node name="FloorManager" type="Node2D" parent="."]
+script = ExtResource("5_gwxfe")
+
+[node name="Floor" parent="FloorManager" instance=ExtResource("6_flaj7")]
+position = Vector2(-320, 420)
+
+[node name="Floor2" parent="FloorManager" instance=ExtResource("6_flaj7")]
+
+[node name="Floor3" parent="FloorManager" instance=ExtResource("6_flaj7")]
+position = Vector2(960, 420)
+
+[node name="CatSpawner" type="Node2D" parent="."]
+script = ExtResource("7_47cvi")
+
+[node name="FleaUI" parent="." node_paths=PackedStringArray("flea", "score") instance=ExtResource("8_m3pw5")]
+flea = NodePath("../Flea")
+score = NodePath("../Score")
+
+[node name="Score" type="Node2D" parent="."]
+script = ExtResource("9_ikuvy")
+
+[node name="Controls" type="CanvasLayer" parent="."]
+script = ExtResource("11_m6c4j")
+
+[node name="Control" type="Control" parent="Controls"]
+layout_mode = 3
+anchor_left = 0.683
+anchor_top = 0.142
+anchor_right = 0.973
+anchor_bottom = 0.423
+offset_left = 130.88
+offset_top = -0.160004
+offset_right = 0.279968
+offset_bottom = -0.0400085
+
+[node name="StandardControls" type="VBoxContainer" parent="Controls/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Move" type="HBoxContainer" parent="Controls/Control/StandardControls"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Controls/Control/StandardControls/Move"]
+texture_filter = 3
+layout_mode = 2
+texture = SubResource("AtlasTexture_v6fma")
+
+[node name="Spacer" type="Control" parent="Controls/Control/StandardControls/Move"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Controls/Control/StandardControls/Move"]
+layout_mode = 2
+theme = ExtResource("12_exs3w")
+theme_override_font_sizes/font_size = 8
+text = "move"
+
+[node name="Bite" type="HBoxContainer" parent="Controls/Control/StandardControls"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Controls/Control/StandardControls/Bite"]
+texture_filter = 3
+layout_mode = 2
+texture = SubResource("AtlasTexture_mcenu")
+
+[node name="Spacer" type="Control" parent="Controls/Control/StandardControls/Bite"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Controls/Control/StandardControls/Bite"]
+layout_mode = 2
+theme = ExtResource("12_exs3w")
+theme_override_font_sizes/font_size = 8
+text = "bite
+"
+
+[node name="Jump" type="HBoxContainer" parent="Controls/Control/StandardControls"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Controls/Control/StandardControls/Jump"]
+texture_filter = 3
+layout_mode = 2
+texture = SubResource("AtlasTexture_sjicc")
+
+[node name="Spacer" type="Control" parent="Controls/Control/StandardControls/Jump"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Controls/Control/StandardControls/Jump"]
+layout_mode = 2
+theme = ExtResource("12_exs3w")
+theme_override_font_sizes/font_size = 8
+text = "jump
+"
+
+[node name="Dash" type="HBoxContainer" parent="Controls/Control/StandardControls"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Controls/Control/StandardControls/Dash"]
+texture_filter = 3
+layout_mode = 2
+texture = SubResource("AtlasTexture_81gie")
+
+[node name="Spacer" type="Control" parent="Controls/Control/StandardControls/Dash"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Controls/Control/StandardControls/Dash"]
+layout_mode = 2
+theme = ExtResource("12_exs3w")
+theme_override_font_sizes/font_size = 8
+text = "dash"
+
+[node name="MountControls" type="VBoxContainer" parent="Controls/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bite" type="HBoxContainer" parent="Controls/Control/MountControls"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Controls/Control/MountControls/Bite"]
+texture_filter = 3
+layout_mode = 2
+texture = SubResource("AtlasTexture_q4oil")
+
+[node name="Spacer" type="Control" parent="Controls/Control/MountControls/Bite"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Controls/Control/MountControls/Bite"]
+layout_mode = 2
+theme = ExtResource("12_exs3w")
+theme_override_font_sizes/font_size = 8
+text = "bite
+"
+
+[node name="Hold" type="HBoxContainer" parent="Controls/Control/MountControls"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Controls/Control/MountControls/Hold"]
+texture_filter = 3
+layout_mode = 2
+texture = SubResource("AtlasTexture_81gie")
+
+[node name="Spacer" type="Control" parent="Controls/Control/MountControls/Hold"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Controls/Control/MountControls/Hold"]
+layout_mode = 2
+theme = ExtResource("12_exs3w")
+theme_override_font_sizes/font_size = 8
+text = "hold"
+
+[node name="EverMouseTimer" type="Timer" parent="Controls"]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="Controls/EverMouseTimer" to="Controls" method="_on_timer_timeout"]

@@ -24,9 +24,9 @@ enum {MOUNT_IDLE, MOUNT_WARNING, MOUNT_ANGRY, MOUNT_FAILED}
 var status = MOUNT_IDLE
 
 var pattern = [
-	[0, 2, MOUNT_IDLE],
-	[0.5, 1.5, MOUNT_WARNING],
-	[3, 5, MOUNT_ANGRY],
+	[0.5, 2.0, MOUNT_IDLE],
+	[1.0, 2.0, MOUNT_WARNING],
+	[3.0, 5.0, MOUNT_ANGRY],
 ]
 var pattern_index = 0
 var in_state = false

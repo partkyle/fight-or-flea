@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="ControlIcons" load_steps=8 format=3 uid="uid://lqgxdif7f4xq"]
+
+[ext_resource type="Texture2D" uid="uid://doab18hsspak1" path="res://asserts/keys.png" id="1_fsn4h"]
+[ext_resource type="Script" path="res://resources/control_icons.gd" id="2_g3lgy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40tvr"]
+atlas = ExtResource("1_fsn4h")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idaqo"]
+atlas = ExtResource("1_fsn4h")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ii45y"]
+atlas = ExtResource("1_fsn4h")
+region = Rect2(16, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_caq58"]
+atlas = ExtResource("1_fsn4h")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4f4nw"]
+atlas = ExtResource("1_fsn4h")
+region = Rect2(0, 16, 16, 16)
+
+[resource]
+script = ExtResource("2_g3lgy")
+move_icon = SubResource("AtlasTexture_4f4nw")
+bite_icon = SubResource("AtlasTexture_40tvr")
+jump_icon = SubResource("AtlasTexture_caq58")
+dash_icon = SubResource("AtlasTexture_idaqo")
+hold_icon = SubResource("AtlasTexture_ii45y")

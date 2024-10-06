@@ -10,6 +10,7 @@ var can_dodge = true
 var max_health = 3
 var health = max_health
 
+@onready var game = $".."
 @onready var flea : Sprite2D = $Flea
 @onready var attack_container = $AttackContainer
 
@@ -35,6 +36,7 @@ func transition_state(s):
 
 	if s == STATE_DEAD:
 		set_collision_layer_value(2, false)
+		game.game_over.emit()
 
 	state = s
 
@@ -71,9 +73,9 @@ func _handle_dodge():
 		can_dodge = true
 
 func _process(delta):
-	if health <= 0:
-		transition_state(STATE_DEAD)
-		print ('need to trigger a gameover')
+	if state != STATE_DEAD:
+		if health <= 0:
+			transition_state(STATE_DEAD)
 
 func _physics_process(delta):
 	if state == STATE_MOBILE:

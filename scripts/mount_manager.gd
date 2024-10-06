@@ -5,8 +5,11 @@ class_name MountManager
 
 var status: MountStatus
 
+func active():
+	return get_children().size() != 0
+
 func begin_mount(flea: Flea, cat: Cat):
-	if get_children().size() != 0:
+	if active():
 		push_error('status is not nil and we tried to create status. this is a 1 mount at a time game')
 		return
 
