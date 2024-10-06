@@ -1,5 +1,7 @@
 # Fight or Flea
 
+[playable on itch.io](https://partkyle.itch.io/fight-or-flea)
+
 ## Ludum Dare 56
 
 This is my entry for ludum Dare 56: Tiny Creatures.
