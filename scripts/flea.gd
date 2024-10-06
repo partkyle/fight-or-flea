@@ -7,7 +7,7 @@ const DODGE_MULTIPLIER = 10.0
 const DODGE_COOLDOWN = 0.2
 var can_dodge = true
 
-var max_health = 1
+var max_health = 3
 var health = max_health
 
 @onready var flea : Sprite2D = $Flea

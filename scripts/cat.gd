@@ -54,10 +54,8 @@ func _physics_process(delta):
 
 func _on_los_view_body_entered(body):
 	if body is Flea:
-		print('gotem')
 		target = body
 
 func _on_los_view_body_exited(body):
 	if body is Flea:
-		print('notem')
 		target = null

@@ -24,9 +24,9 @@ enum {MOUNT_IDLE, MOUNT_WARNING, MOUNT_ANGRY, MOUNT_FAILED}
 var status = MOUNT_IDLE
 
 var pattern = [
-	[2, MOUNT_IDLE],
-	[1, MOUNT_WARNING],
-	[5, MOUNT_ANGRY],
+	[0, 2, MOUNT_IDLE],
+	[0.5, 1.5, MOUNT_WARNING],
+	[3, 5, MOUNT_ANGRY],
 ]
 var pattern_index = 0
 var in_state = false
@@ -76,6 +76,7 @@ func _update_conditions():
 		queue_free()
 		cat.queue_free()
 		score.eaten += 1
+		flea.health = min(flea.max_health, flea.health+1)
 
 func _handle_state():
 	if in_state:
@@ -83,8 +84,8 @@ func _handle_state():
 
 	in_state = true
 	var p = pattern[pattern_index]
-	transition_state(p[1])
-	await get_tree().create_timer(p[0]).timeout
+	transition_state(p[2])
+	await get_tree().create_timer(randf_range(p[0], p[1])).timeout
 	pattern_index = (pattern_index + 1) % pattern.size()
 	in_state = false
 
