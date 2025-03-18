@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ciqdk4ufgsk64"
-path="res://.godot/imported/texture.png-e0b26d31f898b6ebc767b0bc888de3de.ctex"
+uid="uid://cgwhutwrynti3"
+path="res://.godot/imported/gobble.png-b05f5b579d1b65c088504e0d1d9b9fb2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asserts/models/texture.png"
-dest_files=["res://.godot/imported/texture.png-e0b26d31f898b6ebc767b0bc888de3de.ctex"]
+source_file="res://assets/gobble.png"
+dest_files=["res://.godot/imported/gobble.png-b05f5b579d1b65c088504e0d1d9b9fb2.ctex"]
 
 [params]
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/flea.gd" id="1_sf46h"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_vmcok"]
-[ext_resource type="Texture2D" uid="uid://bqq7v3yi7nbon" path="res://asserts/flea.png" id="2_nkt1x"]
+[ext_resource type="Texture2D" uid="uid://bqq7v3yi7nbon" path="res://assets/flea.png" id="2_nkt1x"]
 [ext_resource type="Script" path="res://scripts/mount_manager.gd" id="3_3fsmr"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="4_b1141"]
 [ext_resource type="Script" path="res://scripts/floor_manager.gd" id="5_gwxfe"]
@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://scripts/cat_spawner.gd" id="7_47cvi"]
 [ext_resource type="PackedScene" uid="uid://8uaadyaats0v" path="res://scenes/flea_ui.tscn" id="8_m3pw5"]
 [ext_resource type="Script" path="res://scripts/score.gd" id="9_ikuvy"]
-[ext_resource type="Texture2D" uid="uid://doab18hsspak1" path="res://asserts/keys.png" id="11_7ecsg"]
+[ext_resource type="Texture2D" uid="uid://doab18hsspak1" path="res://assets/keys.png" id="11_7ecsg"]
 [ext_resource type="Script" path="res://scripts/controls.gd" id="11_m6c4j"]
 [ext_resource type="Theme" uid="uid://w00o54vch7ik" path="res://ui/ui_theme.tres" id="12_exs3w"]
 

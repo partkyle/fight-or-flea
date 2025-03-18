@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqq7v3yi7nbon"
-path="res://.godot/imported/flea.png-107a2d0ee58b9a969f61bfffa49ad17f.ctex"
+uid="uid://doab18hsspak1"
+path="res://.godot/imported/keys.png-ffd22c3018535eb04f375ef9c344b944.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asserts/flea.png"
-dest_files=["res://.godot/imported/flea.png-107a2d0ee58b9a969f61bfffa49ad17f.ctex"]
+source_file="res://assets/keys.png"
+dest_files=["res://.godot/imported/keys.png-ffd22c3018535eb04f375ef9c344b944.ctex"]
 
 [params]
 

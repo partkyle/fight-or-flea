@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ControlIcons" load_steps=9 format=3 uid="uid://dcq6bo73165yc"]
 
-[ext_resource type="Texture2D" uid="uid://doab18hsspak1" path="res://asserts/keys.png" id="1_qnvjp"]
+[ext_resource type="Texture2D" uid="uid://doab18hsspak1" path="res://assets/keys.png" id="1_cbk2y"]
 [ext_resource type="Script" path="res://resources/control_icons.gd" id="2_jyftf"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_otu42"]
@@ -11,19 +11,19 @@ atlas = SubResource("CompressedTexture2D_otu42")
 region = Rect2(16, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ehrn2"]
-atlas = ExtResource("1_qnvjp")
+atlas = ExtResource("1_cbk2y")
 region = Rect2(32, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7np7x"]
-atlas = ExtResource("1_qnvjp")
+atlas = ExtResource("1_cbk2y")
 region = Rect2(32, 48, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pd4w1"]
-atlas = ExtResource("1_qnvjp")
+atlas = ExtResource("1_cbk2y")
 region = Rect2(0, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yefaj"]
-atlas = ExtResource("1_qnvjp")
+atlas = ExtResource("1_cbk2y")
 region = Rect2(0, 48, 16, 16)
 
 [resource]
